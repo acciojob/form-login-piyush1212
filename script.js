@@ -8,13 +8,14 @@ function getFormvalue() {
     // Get the value of the last name input field
     var lastName = form.elements['lname'].value.trim();
 
-    // Check if last name contains a space to handle cases with middle name
-    if (lastName.includes(' ')) {
-        // Split the last name by space to get individual parts
-        var lastNameParts = lastName.split(' ');
-        // Take the first part as the last name
-        lastName = lastNameParts[lastNameParts.length - 1];
-    }
+    // Split the last name by space to handle cases with middle names
+    var lastNameParts = lastName.split(' ');
+
+    // Take the last part as the last name
+    var lastName = lastNameParts.pop();
+
+    // Concatenate the remaining parts of the last name (if any) as the first name
+    var firstName = firstName + (lastNameParts.length > 0 ? ' ' + lastNameParts.join(' ') : '');
 
     // Concatenate first name and last name
     var fullName = firstName + ' ' + lastName;
